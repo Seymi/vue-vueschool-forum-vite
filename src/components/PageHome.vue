@@ -12,28 +12,21 @@
     </div>
 </template>
 
-<script>
-import SourceData from '@/data.json';
+<script setup>
+    import SourceData from '@/data.json';
+    import { ref } from 'vue';
 
-export default {
-    data() {
-        return {
-            threads: SourceData.threads,
-            posts: SourceData.posts,
-            users: SourceData.users
-        }
-    },
-    methods: {
-        getUserById(userId) {
-            return this.users.find(u => u.id === userId);
-        },
-        getPostById(postId) {
-            return this.posts.find(p => p.id === postId);
-        }
+    const threads = ref(SourceData.threads);
+    const posts = ref(SourceData.posts);
+    const users = ref(SourceData.users);
 
+    function getUserById(userId) {
+        return users.value.find(u => u.id === userId);
     }
-}
 
+    function getPostById(postId) {
+        return posts.value.find(p => p.id === postId);
+    }
 </script>
 
 <style scoped>
